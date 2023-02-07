@@ -6,7 +6,7 @@ policyDefaults:
   namespace: policy-gitops-generator
   placement:
     clusterSelectors:
-      logging: "enabled"
+      day2: "enabled"
   remediationAction: enforce
   severity: medium
 policies:
