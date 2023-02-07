@@ -29,7 +29,7 @@ metadata:
   namespace: policy-gitops-generator
 spec:
   type: Git
-  pathname: https://github.com/supernoodz/gitops-policy-gen.git
+  pathname: https://github.com/fazifs/open-demos-acm.git
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
