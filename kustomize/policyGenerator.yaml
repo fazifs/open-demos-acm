@@ -10,6 +10,6 @@ policyDefaults:
   remediationAction: enforce
   severity: medium
 policies:
-  - name: policy-enable-openshift-logging
+  - name: policy-auth-htpasswd
     manifests:
-      - path: enable-openshift-logging
+      - path: auth-htpasswd
