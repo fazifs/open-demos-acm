@@ -16,3 +16,5 @@ policies:
   - name: policy-auth-rbac
     manifests:
       - path: auth-rbac
+  - name: remove-kubeadmin
+      - path: remove-kubeadmin
