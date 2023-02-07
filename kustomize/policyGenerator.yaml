@@ -17,7 +17,7 @@ policies:
     manifests:
       - path: auth-rbac
   - name: remove-kubeadmin
-    complianceType: mustnothave
     manifests:
       - path: remove-kubeadmin
+        complianceType: mustnothave
 
