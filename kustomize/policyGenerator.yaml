@@ -20,4 +20,7 @@ policies:
     manifests:
       - path: remove-kubeadmin
         complianceType: mustnothave
+  - name: developer-nsas
+    manifests:
+      - path: namespace-as-a-service
 

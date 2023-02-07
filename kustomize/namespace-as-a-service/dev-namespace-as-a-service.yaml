@@ -1,0 +1,19 @@
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: sandbox01
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: admin
+  namespace: sandbox01
+subjects:
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: developer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
