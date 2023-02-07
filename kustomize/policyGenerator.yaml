@@ -1,0 +1,15 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: policy-gitops-generator
+policyDefaults:
+  namespace: policy-gitops-generator
+  placement:
+    clusterSelectors:
+      logging: "enabled"
+  remediationAction: enforce
+  severity: medium
+policies:
+  - name: policy-enable-openshift-logging
+    manifests:
+      - path: enable-openshift-logging

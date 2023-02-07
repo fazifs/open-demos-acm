@@ -1,0 +1,4 @@
+generators:
+  - policyGenerator.yaml
+commonAnnotations:
+  argocd.argoproj.io/compare-options: IgnoreExtraneous
