@@ -13,3 +13,6 @@ policies:
   - name: policy-auth-htpasswd
     manifests:
       - path: auth-htpasswd
+  - name: policy-auth-rbac
+    manifests:
+      - path: auth-rbac

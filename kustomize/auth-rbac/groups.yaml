@@ -1,0 +1,14 @@
+---
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: cluster-admin
+users:
+  - superadmin
+---
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: developer
+users:
+  - developer
