@@ -12,3 +12,10 @@ metadata:
   name: developer
 users:
   - developer
+---
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: devops
+users:
+  - devops
