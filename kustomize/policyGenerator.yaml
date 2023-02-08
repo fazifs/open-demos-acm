@@ -22,8 +22,8 @@ policies:
         complianceType: mustnothave
   - name: policy-namespace-as-a-service
     placement:
-     clusterSelectors:
-       nsas: "enabled"
+      clusterSelectors:
+        nsas: "enabled"
     manifests:
       - path: namespace-as-a-service
 
