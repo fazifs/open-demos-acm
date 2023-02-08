@@ -21,8 +21,9 @@ policies:
       - path: remove-kubeadmin
         complianceType: mustnothave
   - name: policy-namespace-as-a-service
-    clusterSelectors:
-      nsas: "enabled"
+    placement:
+     clusterSelectors:
+       nsas: "enabled"
     manifests:
       - path: namespace-as-a-service
 
