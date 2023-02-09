@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: pacman-app
-  labels:
-    name: pacman
-    app.kubernetes.io/name: pacman

@@ -3,9 +3,7 @@ kind: Service
 metadata:
   labels:
     name: mongo
-    app.kubernetes.io/name: pacman
   name: mongo
-  namespace: pacman-app
 spec:
   type: ClusterIP
   ports:
@@ -13,4 +11,3 @@ spec:
       targetPort: 27017
   selector:
     name: mongo
-    app.kubernetes.io/name: pacman
