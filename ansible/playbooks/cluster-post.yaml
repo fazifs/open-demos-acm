@@ -8,11 +8,11 @@
         community.general.slack:
           token: "{{ lookup('env','SLACK_TOKEN') }}"
           msg: |
-             ### Cluster Installation ###
-             --------------------------------------
-             `Status`: Success.
-             `Cluster`: http://{{ target_clusters }}
-             --------------------------------------
+              ### Cluster Installation ###
+              --------------------------------------
+            `Status`: Success.
+            `Cluster`: http://{{ target_clusters }}
+              --------------------------------------
           channel: "{{ lookup('env','SLACK_CHANNEL') }}"
           color: good
           username: "Ansible on {{ inventory_hostname }}"
