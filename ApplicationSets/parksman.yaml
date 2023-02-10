@@ -1,0 +1,44 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: parksman-argo
+  namespace: openshift-gitops
+spec:
+  generators:
+  - clusterDecisionResource:
+      configMapRef: acm-placement
+      labelSelector:
+        matchLabels:
+          cluster.open-cluster-management.io/placement: parksman-argo-placement
+      requeueAfterSeconds: 180
+  template:
+    metadata:
+      labels:
+        velero.io/exclude-from-backup: "true"
+      name: parksman-argo-{{name}}
+    spec:
+      destination:
+        namespace: parksman-argo
+        server: '{{server}}'
+      project: default
+      source:
+        path: parksmap
+        repoURL: https://github.com/fazifs/simple-gitops.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - PruneLast=true
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: parksman-argo-placement
+  namespace: openshift-gitops
+spec:
+  clusterSets:
+  - all-clusters
