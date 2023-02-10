@@ -1,0 +1,64 @@
+---
+- name: Check and Notify Pacman App
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - block:
+        - name: Get OpenShift Ingress configuration
+          kubernetes.core.k8s_info:
+            api_version: config.openshift.io/v1
+            kind: Ingress
+            name: cluster
+          register: ocp_ingress_obj
+
+        - name: Set OpenShift Ingress domain
+          ansible.builtin.set_fact:
+            ocp_ingress_domain: "{{ ocp_ingress_obj | json_query('resources[*].spec.domain') }}"
+
+        - name: Wait till Pacman App deployment is ready
+          kubernetes.core.k8s_info:
+            api_version: apps/v1
+            kind: Deployment
+            name: pacman
+            namespace: pacman
+            wait: yes
+            wait_sleep: 10
+            wait_timeout: 360
+          register: pacman_app_deployment_obj
+          until:
+           - pacman_app_deployment_obj.resources[0].status.readyReplicas is defined
+           - "pacman_app_deployment_obj.resources[0].status.replicas == \
+               pacman_app_deployment_obj.resources[0].status.readyReplicas"
+          retries: 12
+          delay: 10
+      environment:
+        K8S_AUTH_HOST: "{{ openshit_api }}"
+        K8S_AUTH_API_KEY: "{{ openshift_token }}"
+        K8S_AUTH_VERIFY_SSL: False
+
+    - name: Check Pacman App
+      ansible.builtin.uri:
+        url: "https://pacman.{{ ocp_ingress_domain[0] }}"
+        method: GET
+        validate_certs: false
+        status_code: 200
+      register: _result
+      until: _result.status == 200
+      retries: 12
+      delay: 10
+
+    - name: Send Pacman App Status via Slack notification
+      community.general.slack:
+        token: "{{ lookup('env','SLACK_TOKEN') }}"
+        msg: |
+            ### Pacman App ###
+            --------------------------------------
+            `Status`: Success.
+            `Pacman URL`: https://pacman.{{ ocp_ingress_domain[0] }}
+            --------------------------------------
+        channel: "{{ lookup('env','SLACK_CHANNEL') }}"
+        color: good
+        username: "Ansible on {{ inventory_hostname }}"
+        link_names: 0
+        parse: 'none'
