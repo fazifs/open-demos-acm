@@ -35,7 +35,7 @@
       environment:
         K8S_AUTH_HOST: "'{{ lookup('ansible.builtin.env', 'K8S_AUTH_HOST') }}'"
         K8S_AUTH_API_KEY: "'{{ lookup('ansible.builtin.env', 'K8S_AUTH_API_KEY') }}'"
-        K8S_AUTH_VERIFY_SSL: False
+        K8S_AUTH_VERIFY_SSL: True
 
 #    - name: Check Pacman App
 #      ansible.builtin.uri:
