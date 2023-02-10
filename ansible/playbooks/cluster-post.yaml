@@ -6,7 +6,7 @@
   tasks:
   
    - name: Send Pacman App Status via Slack notification
-      community.general.slack:
+     community.general.slack:
         token: "{{ lookup('env','SLACK_TOKEN') }}"
         msg: |
             ### Pacman App ###
