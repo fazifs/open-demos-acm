@@ -11,7 +11,7 @@
             ### Cluster creation ###
             --------------------------------------
             `Status`: Success.
-            `Cluster`: aws
+            `Cluster`: {{ target_clusters }}
             --------------------------------------
         channel: "{{ lookup('env','SLACK_CHANNEL') }}"
         color: good
