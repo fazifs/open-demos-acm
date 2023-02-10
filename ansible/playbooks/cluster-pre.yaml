@@ -11,7 +11,7 @@
             ### Cluster creation ###
             --------------------------------------
             `Status`: Success.
-            `Cluster`: Cluster provisionig started.
+            `Cluster`: Cluster provisionig started. 
             --------------------------------------
         channel: "{{ lookup('env','SLACK_CHANNEL') }}"
         color: good
