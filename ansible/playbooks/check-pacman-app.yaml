@@ -48,7 +48,7 @@
       retries: 12
       delay: 10
 
-    - name: Send Pacman App Status via Slack notification
+   - name: Send Pacman App Status via Slack notification
       community.general.slack:
         token: "{{ lookup('env','SLACK_TOKEN') }}"
         msg: |

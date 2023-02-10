@@ -4,20 +4,18 @@
   gather_facts: false
 
   tasks:
-      - name: Send Pacman App Status via Slack notification
-      community.general.slack:
-        token: "{{ lookup('env','SLACK_TOKEN') }}"
-        msg: |
+      - name: Send cluster Status via Slack notification
+         community.general.slack:
+          token: "{{ lookup('env','SLACK_TOKEN') }}"
+          msg: |
             ### Pacman App ###
             --------------------------------------
             `Status`: Success.
-            `Pacman URL`: http://pacman-pacman.{{ ocp_ingress_domain[0] }}
+            `Cluster`: {{ target_clusters }}
             --------------------------------------
-        channel: "{{ lookup('env','SLACK_CHANNEL') }}"
-        color: good
-        username: "Ansible on {{ inventory_hostname }}"
-        icon_url: ''
-        link_names: 0
-        parse: 'none'
-
- 
+          channel: "{{ lookup('env','SLACK_CHANNEL') }}"
+          color: good
+          username: "Ansible on {{ inventory_hostname }}"
+          icon_url: ''
+          link_names: 0
+          parse: 'none'
