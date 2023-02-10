@@ -23,8 +23,8 @@ spec:
         server: '{{server}}'
       project: default
       source:
-        path: parksmap
-        repoURL: https://github.com/fazifs/simple-gitops.git
+        path: apps/parksmap
+        repoURL: https://github.com/fazifs/open-demos-acm.git
         targetRevision: main
       syncPolicy:
         automated:

@@ -22,7 +22,7 @@ spec:
         server: "{{server}}"
       project: default
       source:
-        path: argoapps/apps/pacman-argo
+        path: apps/pacman
         repoURL: https://github.com/fazifs/open-demos-acm
         targetRevision: main
       syncPolicy:
