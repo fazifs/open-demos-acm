@@ -48,17 +48,17 @@
       retries: 12
       delay: 10
 
-#    - name: Send Pacman App Status via Slack notification
-#      community.general.slack:
-#        token: "{{ lookup('env','SLACK_TOKEN') }}"
-#        msg: |
-#            ### Pacman App ###
-#            --------------------------------------
-#            `Status`: Success.
-#            `Pacman URL`: https://pacman.{{ ocp_ingress_domain[0] }}
-#            --------------------------------------
-#        channel: "{{ lookup('env','SLACK_CHANNEL') }}"
-#        color: good
-#        username: "Ansible on {{ inventory_hostname }}"
-#        link_names: 0
-#        parse: 'none'
+    - name: Send Pacman App Status via Slack notification
+      community.general.slack:
+        token: "{{ lookup('env','SLACK_TOKEN') }}"
+        msg: |
+            ### Pacman App ###
+            --------------------------------------
+            `Status`: Success.
+            `Pacman URL`: https://pacman.{{ ocp_ingress_domain[0] }}
+            --------------------------------------
+        channel: "{{ lookup('env','SLACK_CHANNEL') }}"
+        color: good
+        username: "Ansible on {{ inventory_hostname }}"
+        link_names: 0
+        parse: 'none'
