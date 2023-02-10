@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: pacman-argo
+  namespace: openshift-gitops
+spec:
+  generators:
+    - clusterDecisionResource:
+        configMapRef: acm-placement
+        labelSelector:
+          matchLabels:
+            cluster.open-cluster-management.io/placement: pacman-argo-placement
+        requeueAfterSeconds: 180
+  template:
+    metadata:
+      name: pacman-argo-{{name}}
+      labels:
+        velero.io/exclude-from-backup: "true"
+    spec:
+      destination:
+        namespace: demo-pacman-argo
+        server: "{{server}}"
+      project: default
+      source:
+        path: argoapps/apps/pacman-argo
+        repoURL: https://github.com/fazifs/open-demos-acm
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - PruneLast=true
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: pacman-argo-placement
+  namespace: openshift-gitops
+spec:
+  clusterSets:
+    - all-clusters
