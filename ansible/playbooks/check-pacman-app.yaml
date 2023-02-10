@@ -33,9 +33,9 @@
           retries: 12
           delay: 10
       environment:
-        K8S_AUTH_HOST: "'{{ lookup('ansible.builtin.env', 'K8S_AUTH_HOST') }}'"
-        K8S_AUTH_API_KEY: "'{{ lookup('ansible.builtin.env', 'K8S_AUTH_API_KEY') }}'"
-        K8S_AUTH_VERIFY_SSL: "'{{ lookup('ansible.builtin.env', 'K8S_AUTH_VERIFY_SSL') }}'"
+        K8S_AUTH_HOST: "{{ openshit_api }}"
+        K8S_AUTH_API_KEY: "{{ openshift_token }}"
+        K8S_AUTH_VERIFY_SSL: False
 
 #    - name: Check Pacman App
 #      ansible.builtin.uri:
