@@ -1,0 +1,10 @@
+---
+apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+    name: check-posthook
+spec:
+    tower_auth_secret: aap-controller
+    job_template_name: check-app
+    extra_vars:
+      phase: posthook
