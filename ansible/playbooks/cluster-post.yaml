@@ -1,18 +1,17 @@
 ---
-- name: Check and Notify Cluster
+- name: Notify Cluster
   hosts: all
   gather_facts: false
 
-  tasks:
-  
-   - name: Send Pacman App Status via Slack notification
+  tasks: 
+   - name: Send cluster status via Slack notification
      community.general.slack:
         token: "{{ lookup('env','SLACK_TOKEN') }}"
         msg: |
-            ### Pacman App ###
+            ### Cluster creation ###
             --------------------------------------
             `Status`: Success.
-            `Pacman URL`: http://pacman-pacman.{{ ocp_ingress_domain[0] }}
+            `Cluster`: {{ target_clusters }}
             --------------------------------------
         channel: "{{ lookup('env','SLACK_CHANNEL') }}"
         color: good
