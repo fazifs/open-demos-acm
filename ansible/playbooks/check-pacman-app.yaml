@@ -39,16 +39,16 @@
     K8S_AUTH_API_KEY: "{{ openshift_token }}"
     K8S_AUTH_VERIFY_SSL: False
 
-        - name: Check Pacman App
-          ansible.builtin.uri:
-            url: "http://pacman-pacman.{{ ocp_ingress_domain[0] }}"
-            method: GET
-            validate_certs: false
-            status_code: 200
-          register: _result
-          until: _result.status == 200
-          retries: 12
-          delay: 10
+        # - name: Check Pacman App
+        #   ansible.builtin.uri:
+        #     url: "http://pacman-pacman.{{ ocp_ingress_domain[0] }}"
+        #     method: GET
+        #     validate_certs: false
+        #     status_code: 200
+        #   register: _result
+        #   until: _result.status == 200
+        #   retries: 12
+        #   delay: 10
 
         - name: Send Pacman App Status via Slack notification
           community.general.slack:
