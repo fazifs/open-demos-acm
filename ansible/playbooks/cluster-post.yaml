@@ -1,5 +1,5 @@
 ---
-- name: Check and Notify Pacman App
+- name: Notify cluster installation
   hosts: all
   gather_facts: false
 
