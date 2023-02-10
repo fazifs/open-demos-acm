@@ -39,7 +39,7 @@
 
 #    - name: Check Pacman App
 #      ansible.builtin.uri:
-#        url: "https://pacman.{{ ocp_ingress_domain[0] }}"
+#        url: "http://pacman-pacman.{{ ocp_ingress_domain[0] }}"
 #        method: GET
 #        validate_certs: false
 #        status_code: 200
