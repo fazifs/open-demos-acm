@@ -55,7 +55,7 @@
             ### Pacman App ###
             --------------------------------------
             `Status`: Success.
-            `Pacman URL`: https://pacman.{{ ocp_ingress_domain[0] }}
+            `Pacman URL`: http://pacman-pacman.{{ ocp_ingress_domain[0] }}
             --------------------------------------
         channel: "{{ lookup('env','SLACK_CHANNEL') }}"
         color: good
