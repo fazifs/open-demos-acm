@@ -23,7 +23,7 @@ policies:
   - name: policy-namespace-as-a-service
     placement:
       clusterSelectors:
-        nsas: "enabled"
+        env: "dev"
     manifests:
       - path: namespace-as-a-service
 
