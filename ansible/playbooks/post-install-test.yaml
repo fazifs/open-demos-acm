@@ -6,14 +6,14 @@
   tasks: 
    - name: Send cluster status via Slack notification
      community.general.slack:
-        token: "{{ lookup('env','SLACK_TOKEN') }}"
+        token: "{{ SLACK_TOKEN }}"
         msg: |
             ### Cluster creation ###
             --------------------------------------
             `Status`: Success.
             `Cluster`: Your cluster is now ready. 
             --------------------------------------
-        channel: "{{ lookup('env','SLACK_CHANNEL') }}"
+        channel: "{{ SLACK_CHANNEL }}"
         color: good
         username: "Ansible on {{ inventory_hostname }}"
         icon_url: ''
