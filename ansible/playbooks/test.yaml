@@ -1,0 +1,21 @@
+---
+- name: Notify Cluster Preinstall
+  hosts: all
+  gather_facts: false
+
+  tasks: 
+   - name: Send cluster status via Slack notification
+     community.general.slack:
+        token: "{{ SLACK_TOKEN }}"
+        msg: |
+            ### Cluster creation ###
+            --------------------------------------
+            `Status`: Success.
+            `Cluster`: Cluster provisionig started. 
+            --------------------------------------
+        channel: "{{ SLACK_CHANNEL }}"
+        color: good
+        username: "Ansible on {{ inventory_hostname }}"
+        icon_url: ''
+        link_names: 0
+        parse: 'none'
