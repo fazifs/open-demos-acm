@@ -1,0 +1,66 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-remove-kubeadmin
+  namespace: policies
+  annotations:
+    policy.open-cluster-management.io/categories: SC System and Communications Protection
+    policy.open-cluster-management.io/controls: SC-1 SYSTEM AND COMMUNICATIONS PROTECTION POLICY AND PROCEDURES
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+
+spec:
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-remove-kubeadmin
+        spec:
+          object-templates:
+            - complianceType: mustnothave
+              objectDefinition:
+                apiVersion: v1
+                kind: Secret
+                metadata:
+                  name: kubeadmin
+                  namespace: kube-system
+                type: Opaque
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+status:
+  placement:
+    - placementBinding: policy-remove-kubeadmin-placement
+      placementRule: policy-remove-kubeadmin-placement
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: policy-remove-kubeadmin-placement
+  namespace: policies 
+spec:
+  clusterConditions:
+    - status: "True"
+      type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      - key: idp
+        operator: In
+        values:
+          - htpasswd
+status: {}
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: policy-remove-kubeadmin-placement
+  namespace: policies
+placementRef:
+  name: policy-remove-kubeadmin-placement
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+subjects:
+  - name: policy-remove-kubeadmin
+    apiGroup: policy.open-cluster-management.io
+    kind: Policy
