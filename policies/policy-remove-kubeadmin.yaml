@@ -29,10 +29,6 @@ spec:
           remediationAction: inform
           severity: low
   remediationAction: inform
-status:
-  placement:
-    - placementBinding: policy-remove-kubeadmin-placement
-      placementRule: policy-remove-kubeadmin-placement
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -49,7 +45,6 @@ spec:
         operator: In
         values:
           - htpasswd
-status: {}
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
