@@ -24,7 +24,7 @@ spec:
       source:
         path: apps/pacman
         repoURL: https://github.com/fazifs/open-demos-acm
-        targetRevision: main
+        targetRevision: test-pacman
       syncPolicy:
         automated:
           prune: true
